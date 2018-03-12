@@ -1,0 +1,18 @@
+.search{
+    width: 80px;
+    height: 40px;
+    border-radius: 40px;
+    border: 2px solid lightblue;
+    position: absolute;
+    right: 200px;
+    top: 200px;
+    outline: none;
+    text-indent: 12px;
+    color: #666;
+    font-size: 16px;
+    padding: 0;
+    -webkit-transition: width 0.5s;
+}
+.search:hover{
+    width: 200px;
+}

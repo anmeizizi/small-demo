@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    a,img{
+        border: 0;
+    }
+    body{
+        font: 12px/180% Arial 
+    }
+    .tab1{
+        width: 401px;
+        border-top: #cccccc solid 1px;
+        border-bottom: #cccccc solid 1px;
+        margin: 50px auto 0 auto;
+    }
+    .menu{
+        height: 28px;
+        border-right: #cccccc solid 1px;
+    }
+    .menu li{
+        float: left;
+        width: 25%;
+        text-align: center;
+        height: 28px;
+        line-height: 28px;
+        cursor: pointer;
+        border-left: #cccccc solid 1px;
+        color: #666;
+        font-size: 14px;
+        overflow: hidden;
+        background-color: #E0E2EB;
+        box-sizing: border-box;
+    }
+    .menu li.off{
+        background: #ffffff;
+        color: #336699;
+        font-weight: bold;
+    }
+    .menudiv{
+        height: 200px;
+        border-left: #ccc solid 1px;
+        border-right:  #ccc solid 1px;
+        background: #fefefe;
+    }
+    .menudiv div{
+        padding: 15px;
+        line-height: 28px;
+    }
+    </style>
+</head>
+<body>
+    <div class="tab1" id="tab1">
+        <div class="menu">
+            <ul>
+                <li id="one1" onclick="setTab('one',1)">扎西德勒</li>
+                <li id="one2" onclick="setTab('one',2)">萨瓦迪卡</li>
+                <li id="one3" onclick="setTab('one',3)">阿尼</li>
+                <li id="one4" onclick="setTab('one',4)">工美纳塞</li>
+            </ul>
+        </div>
+        <div class="menudiv">
+            <div id="con_one_1">还哦娜娜</div>
+            <div id="con_one_2" style="display:none">哈瓦那</div>
+            <div id="con_one_3" style="display:none">好难哦</div>
+            <div id="con_one_4" style="display:none">真的太丧了</div>
+        </div>
+    </div>
+    <div style="text-align:center;clear:both;"></div>
+    <script>
+    var name_0='one';
+    var cursel_0=1;
+    var scrollTime = 3000;
+    var links_len,iTntervalId;
+    window.onload=function(){
+        var links = document.getElementsByTagName('li')
+        links_len = links.length;
+        for (var i=0;i<links_len;i++){
+            links[i].onmouseover=function(){
+                clearInterval(iTntervalId);
+                this.onmouseout=function(){
+                    iTntervalId=setInterval(Next,scrollTime);
+                }
+            }
+        }
+        document.getElementById('con_'+name_0+'_'+links_len).parentNode.onmouseover=function(){
+            clearInterval(iIntervalId);
+            this.onmouseout=function(){
+                iTntervalId=setInterval(Next,scrollTime);
+            }
+        }
+        setTab(name_0,cursel_0);
+        iIntervalId=setInterval(Next,scrollTime);
+    }
+    function setTab(name,cursel){
+        cursel_0=cursel;
+        for(var i=1;i<=links_len;i++){
+            var menu= document.getElementById(name+i);
+            var menudiv = document.getElementById('con_'+name+'_'+i);
+            if(i==cursel){
+                menu.className="off";
+                menudiv.style.display='block';
+            }else{
+                menu.className="";
+                menudiv.style.display='none';
+            }
+        }
+    }
+    function Next(){
+        cursel_0++;
+        if(cursel_0>links_len)cursel_0=1
+        setTab(name_0,cursel_0);
+    }
+
+    </script>
+</body>
+</html>
